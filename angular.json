@@ -1,6 +1,41 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "angular-fixtures": {
+      "projectType": "library",
+      "root": "libs/angular-fixtures",
+      "sourceRoot": "libs/angular-fixtures/src",
+      "prefix": "angular-testing",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/angular-fixtures/tsconfig.lib.json",
+            "project": "libs/angular-fixtures/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-fixtures/tsconfig.lib.json",
+              "libs/angular-fixtures/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/angular-fixtures/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-fixtures/jest.config.js",
+            "tsConfig": "libs/angular-fixtures/tsconfig.spec.json",
+            "setupFile": "libs/angular-fixtures/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
@@ -12,5 +47,6 @@
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
     }
-  }
+  },
+  "defaultProject": "angular-fixtures"
 }

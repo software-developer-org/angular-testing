@@ -15,7 +15,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-testing/angular-fixtures": [
+        "libs/angular-fixtures/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
