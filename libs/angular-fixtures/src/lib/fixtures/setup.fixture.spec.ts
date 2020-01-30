@@ -1,7 +1,7 @@
-import { Setup } from './setup.fixture';
+import { SetupFixtures } from './setup.fixture';
 
-describe('Setup', () => {
+describe('SetupFixture', () => {
   it('should create an instance', () => {
-    expect(new Setup()).toBeTruthy();
+    expect(new SetupFixtures()).toBeTruthy();
   });
 });
