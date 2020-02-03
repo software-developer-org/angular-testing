@@ -24,7 +24,8 @@ export class FixtureUtils {
    *
    * @param id
    */
-  static dataTestIdSelector(id?: any): string {
-    return '[data-testid' + (id ? "='" + id + "']" : ']');
+  static dataTestIdSelector(id?: any, elementTag?: string): string {
+    const attributeSelector = '[data-testid' + (id ? "='" + id + "']" : ']');
+    return !!elementTag ? elementTag + attributeSelector : attributeSelector;
   }
 }
