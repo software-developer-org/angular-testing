@@ -1,4 +1,4 @@
-import { DebugElement, Predicate } from '@angular/core';
+import { DebugElement, Predicate, Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { RouterLinkDirectiveStub } from '../stubs/router-link-directive.stub';
 
@@ -26,15 +26,19 @@ export class SimpleComponentView<T> {
 
   //// element lookups ////
 
-  queryByCss(predicate: Predicate<DebugElement>): DebugElement {
+  query(predicate: Predicate<DebugElement>): DebugElement {
     return this.debugElement.query(predicate);
   }
 
-  queryAllByCss(predicate: Predicate<DebugElement>): DebugElement[] {
+  queryAll(predicate: Predicate<DebugElement>): DebugElement[] {
     return this.debugElement.queryAll(predicate);
   }
 
   //// getters
+  routerLinks(predicateFunction: (type: Type<any>) => Predicate<DebugElement>): DebugElement[] {
+    return this.debugElement.queryAll(predicateFunction(RouterLinkDirectiveStub));
+  }
+
   getMockedRouterLinkDirective(element: DebugElement): RouterLinkDirectiveStub {
     return element.injector.get(RouterLinkDirectiveStub);
   }
