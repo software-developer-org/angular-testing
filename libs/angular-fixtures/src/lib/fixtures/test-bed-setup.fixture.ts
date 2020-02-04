@@ -11,8 +11,8 @@ import { RouterLinkDirectiveStub } from '../stubs/router-link-directive.stub';
 import { SetupFixtures } from './setup.fixture';
 
 export class TestBedSetup<T, V> extends SetupFixtures<T, V> {
-  constructor(public testBedStatic: TestBedStatic, public fixtures?: T, public viewFn?: (fixture: SetupFixtures<T, V>) => V) {
-    super(fixtures, viewFn);
+  constructor(public testBedStatic: TestBedStatic, public fixtures?: T, public view?: V) {
+    super(fixtures, view);
     this.testBedStatic
       .overrideModule(RouterTestingModule, {
         add: {
