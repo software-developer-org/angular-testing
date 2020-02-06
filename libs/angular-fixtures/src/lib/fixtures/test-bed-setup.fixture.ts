@@ -1,3 +1,4 @@
+import { DebugElement, Predicate } from '@angular/core';
 import { TestBedStatic } from '@angular/core/testing';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {
@@ -8,11 +9,19 @@ import {
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RouterLinkDirectiveStub } from '../stubs/router-link-directive.stub';
+import { View } from '../views/simple-component.view';
 import { SetupFixtures } from './setup.fixture';
 
-export class TestBedSetup<T, V> extends SetupFixtures<T, V> {
-  constructor(public testBedStatic: TestBedStatic, public fixtures?: T, public view?: V) {
-    super(fixtures, view);
+export class TestBedSetup<
+  DATA,
+  VIEW extends View<any, any>
+> extends SetupFixtures<DATA, VIEW> {
+  constructor(
+    public testBedStatic: TestBedStatic,
+    public data?: DATA,
+    public view?: VIEW
+  ) {
+    super(data, view);
     this.testBedStatic
       .overrideModule(RouterTestingModule, {
         add: {
@@ -55,4 +64,32 @@ export class TestBedSetup<T, V> extends SetupFixtures<T, V> {
     });
     return this;
   }
+
+  /// view delegatores
+  get component() {
+    return this.view.componentInstance;
+  }
+
+  get debugElement(): DebugElement {
+    return this.view.debugElement;
+  }
+
+  get nativeElement(): any {
+    return this.view.nativeElement;
+  }
+
+  detectChanges() {
+    this.view.detectChanges();
+    return this;
+  }
+
+  query(predicate: Predicate<DebugElement>): DebugElement {
+    return this.view.query(predicate);
+  }
+
+  queryAll(predicate: Predicate<DebugElement>): DebugElement[] {
+    return this.view.queryAll(predicate);
+  }
+
+  ////
 }

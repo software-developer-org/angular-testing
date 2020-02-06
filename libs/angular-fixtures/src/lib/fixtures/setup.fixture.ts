@@ -1,13 +1,21 @@
-export class SetupFixtures<T, V> {
+/**
+ * A setup with data and view fixtures.
+ */
+export class SetupFixtures<DATA, VIEW> {
   /**
    *
-   * @param fixtures represents (data) fixtures
-   * @param viewFn represents view fixture
+   * @param data represents data (fixtures)
+   * @param view represents view (fixture)
    */
-  constructor(public fixtures?: T, public view?: V) {}
+  constructor(public data?: DATA, public view?: VIEW) {}
 
-  setView(view: V) {
+  setView(view: VIEW) {
     this.view = view;
+    return this;
+  }
+
+  setData(data: DATA) {
+    this.data = data;
     return this;
   }
 }
