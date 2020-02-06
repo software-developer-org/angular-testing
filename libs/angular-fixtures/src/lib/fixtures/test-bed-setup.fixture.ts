@@ -14,7 +14,9 @@ import { SetupFixtures } from './setup.fixture';
 
 export class TestBedSetup<
   DATA,
-  VIEW extends View<any, any>
+  VIEW extends View<COMPONENT, NATIVE_ELEMENT>,
+  COMPONENT = any,
+  NATIVE_ELEMENT = any
 > extends SetupFixtures<DATA, VIEW> {
   constructor(
     public testBedStatic: TestBedStatic,
