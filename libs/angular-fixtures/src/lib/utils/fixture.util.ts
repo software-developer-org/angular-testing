@@ -1,7 +1,7 @@
 export class FixtureUtils {
-  static randomInteger(e = 1000000000) {
+  static randomInteger(power = 1000000000) {
     // https://stackoverflow.com/a/8378885/3437868
-    return Math.floor(Math.random() * 10 * e) + 1;
+    return Math.floor(Math.random() * Math.pow(10, power)) + 1;
   }
 
   /**
