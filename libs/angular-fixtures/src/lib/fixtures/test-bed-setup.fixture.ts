@@ -1,5 +1,19 @@
-import { DebugElement, Predicate } from '@angular/core';
-import { TestBedStatic } from '@angular/core/testing';
+import {
+  Component,
+  DebugElement,
+  Directive,
+  InjectFlags,
+  InjectionToken,
+  NgModule,
+  Pipe,
+  Predicate,
+  Type
+} from '@angular/core';
+import {
+  ComponentFixture,
+  MetadataOverride,
+  TestBedStatic
+} from '@angular/core/testing';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {
   ActivatedRoute,
@@ -93,5 +107,64 @@ export class TestBedSetup<
     return this.view.queryAll(predicate);
   }
 
-  ////
+  //// TestBed delegators
+  overrideModule(ngModule: Type<any>, override: MetadataOverride<NgModule>) {
+    this.testBedStatic.overrideModule(ngModule, override);
+    return this;
+  }
+
+  overrideComponent(
+    component: Type<any>,
+    override: MetadataOverride<Component>
+  ) {
+    this.testBedStatic.overrideComponent(component, override);
+    return this;
+  }
+
+  overrideDirective(
+    directive: Type<any>,
+    override: MetadataOverride<Directive>
+  ) {
+    this.testBedStatic.overrideDirective(directive, override);
+    return this;
+  }
+
+  overridePipe(pipe: Type<any>, override: MetadataOverride<Pipe>) {
+    this.testBedStatic.overridePipe(pipe, override);
+    return this;
+  }
+
+  overrideTemplate(component: Type<any>, template: string) {
+    this.testBedStatic.overrideTemplate(component, template);
+    return this;
+  }
+
+  overrideTemplateUsingTestingModule(component: Type<any>, template: string) {
+    this.testBedStatic.overrideTemplateUsingTestingModule(component, template);
+    return this;
+  }
+
+  overrideProvider(
+    token: any,
+    provider: {
+      useFactory?: Function;
+      useValue?: any;
+      deps?: any[];
+    }
+  ) {
+    this.testBedStatic.overrideProvider(token, provider);
+    return this;
+  }
+
+  get<T>(
+    token: Type<T> | InjectionToken<T>,
+    notFoundValue?: T,
+    flags?: InjectFlags
+  ) {
+    return this.testBedStatic.get(token, notFoundValue, flags);
+  }
+
+  createComponent<T>(component: Type<T>): ComponentFixture<T> {
+    return this.testBedStatic.createComponent(component);
+  }
 }
