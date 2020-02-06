@@ -67,7 +67,7 @@ export class TestBedSetup<
     return this;
   }
 
-  /// view delegatores
+  //// view fixture delegators
   get component() {
     return this.view.componentInstance;
   }
