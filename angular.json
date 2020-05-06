@@ -29,7 +29,8 @@
           "options": {
             "jestConfig": "libs/angular-fixtures/jest.config.js",
             "tsConfig": "libs/angular-fixtures/tsconfig.spec.json",
-            "setupFile": "libs/angular-fixtures/src/test-setup.ts"
+            "setupFile": "libs/angular-fixtures/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },
