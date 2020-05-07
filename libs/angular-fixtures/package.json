@@ -1,6 +1,6 @@
 {
   "name": "angular-fixtures",
-  "version": "1.0.0-rc17",
+  "version": "1.0.0-rc20",
   "peerDependencies": {
     "@angular/common": "9.1.4",
     "@angular/core": "9.1.4"

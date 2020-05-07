@@ -7,24 +7,16 @@ import {
   NgModule,
   Pipe,
   Predicate,
-  Type
-} from '@angular/core';
-import {
-  ComponentFixture,
-  MetadataOverride,
-  TestBedStatic
-} from '@angular/core/testing';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import {
-  ActivatedRoute,
-  RouterLink,
-  RouterLinkWithHref
-} from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
-import { RouterLinkDirectiveStub } from '../stubs/router-link-directive.stub';
-import { View } from '../views/simple-component.view';
-import { SetupFixtures } from './setup.fixture';
+  Type,
+} from "@angular/core";
+import { ComponentFixture, MetadataOverride, TestBedStatic } from "@angular/core/testing";
+import { ActivatedRoute, RouterLink, RouterLinkWithHref } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import { of } from "rxjs";
+import { RouterLinkDirectiveStub } from "../stubs/router-link-directive.stub";
+import { View } from "../views/simple-component.view";
+import { SetupFixtures } from "./setup.fixture";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 export class TestBedSetup<
   DATA,
@@ -32,51 +24,47 @@ export class TestBedSetup<
   COMPONENT = any,
   NATIVE_ELEMENT = any
 > extends SetupFixtures<DATA, VIEW> {
-  constructor(
-    public testBedStatic: TestBedStatic,
-    public data?: DATA,
-    public view?: VIEW
-  ) {
+  constructor(public testBedStatic: TestBedStatic, public data?: DATA, public view?: VIEW) {
     super(data, view);
     this.testBedStatic
       .overrideModule(RouterTestingModule, {
         add: {
-          imports: [RouterTestingModule]
-        }
+          imports: [RouterTestingModule],
+        },
       })
       .overrideProvider(MatDialogRef, {
-        useValue: {}
+        useValue: {},
       })
       .overrideProvider(MAT_DIALOG_DATA, {
-        useValue: {}
+        useValue: {},
       })
       .overrideDirective(RouterLink, {
         set: {
           providers: [
             {
               provide: RouterLink,
-              useClass: RouterLinkDirectiveStub
-            }
-          ]
-        }
+              useClass: RouterLinkDirectiveStub,
+            },
+          ],
+        },
       })
       .overrideDirective(RouterLinkWithHref, {
         set: {
           providers: [
             {
               provide: RouterLinkWithHref,
-              useClass: RouterLinkDirectiveStub
-            }
-          ]
-        }
+              useClass: RouterLinkDirectiveStub,
+            },
+          ],
+        },
       });
   }
 
   stubRouteData(data: any) {
     this.testBedStatic.overrideProvider(ActivatedRoute, {
       useValue: {
-        data: of(data)
-      }
+        data: of(data),
+      },
     });
     return this;
   }
@@ -113,18 +101,12 @@ export class TestBedSetup<
     return this;
   }
 
-  overrideComponent(
-    component: Type<any>,
-    override: MetadataOverride<Component>
-  ) {
+  overrideComponent(component: Type<any>, override: MetadataOverride<Component>) {
     this.testBedStatic.overrideComponent(component, override);
     return this;
   }
 
-  overrideDirective(
-    directive: Type<any>,
-    override: MetadataOverride<Directive>
-  ) {
+  overrideDirective(directive: Type<any>, override: MetadataOverride<Directive>) {
     this.testBedStatic.overrideDirective(directive, override);
     return this;
   }
@@ -156,11 +138,7 @@ export class TestBedSetup<
     return this;
   }
 
-  get<T>(
-    token: Type<T> | InjectionToken<T>,
-    notFoundValue?: T,
-    flags?: InjectFlags
-  ) {
+  get<T>(token: Type<T> | InjectionToken<T>, notFoundValue?: T, flags?: InjectFlags) {
     return this.testBedStatic.get(token, notFoundValue, flags);
   }
 
