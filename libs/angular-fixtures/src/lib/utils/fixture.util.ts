@@ -9,9 +9,8 @@ export class FixtureUtils {
    * @param length
    */
   static randomString(length = 10) {
-    var result = '';
-    var characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = "";
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     var charactersLength = characters.length;
     for (var i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -25,7 +24,7 @@ export class FixtureUtils {
    * @param id
    */
   static dataTestIdSelector(id?: any, elementTag?: string): string {
-    const attributeSelector = '[data-testid' + (id ? "='" + id + "']" : ']');
+    const attributeSelector = "[data-testid" + (id ? "='" + id + "']" : "]");
     return !!elementTag ? elementTag + attributeSelector : attributeSelector;
   }
 }

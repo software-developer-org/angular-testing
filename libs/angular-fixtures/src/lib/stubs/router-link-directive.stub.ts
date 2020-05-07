@@ -1,27 +1,20 @@
-import {
-  Directive,
-  HostListener,
-  Input,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges
-} from '@angular/core';
+import { Directive, HostListener, Input, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 
 /**
  * Source: https://angular.io/guide/testing#components-with-routerlink
  */
 @Directive({
-  selector: '[routerLink]'
+  selector: "[routerLink]",
 })
 export class RouterLinkDirectiveStub implements OnChanges, OnDestroy {
-  @Input('routerLink')
+  @Input("routerLink")
   routerLink: string;
 
   routerLinkClicked = false;
 
   constructor() {}
 
-  @HostListener('click')
+  @HostListener("click")
   onClick() {
     this.routerLinkClicked = true;
   }
